@@ -9,3 +9,9 @@ body {
   background-color: #2d3748;
   text-align: center;
 }
+
+h1 {
+  color: #ffffff;
+  text-shadow: 0 0 20px #fff, 0 0 30px #3dff98, 0 0 40px#3dff98, 0 0 50px#3dff98,
+    0 0 60px#3dff98, 0 0 70px#3dff98, 0 0 80px#3dff98;
+}
