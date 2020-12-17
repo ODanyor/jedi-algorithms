@@ -11,26 +11,26 @@ function moduleSorting () {
   // measurePerfomance(() => defaultSort(generateNumbers(100)));
 
   function bubbleSort (array) {
-    const resultArray = array.slice();
+    const sortedArray = array.slice();
 
-    for (let outer = 0; outer < resultArray.length; outer++) {
-      let outerElement = resultArray[outer];
+    for (let outer = 0; outer < sortedArray.length; outer++) {
+      let outerElement = sortedArray[outer];
 
-      for (let inner = outer + 1; inner < resultArray.length; inner++) {
-        let innerElement = resultArray[inner];
+      for (let inner = outer + 1; inner < sortedArray.length; inner++) {
+        let innerElement = sortedArray[inner];
 
         if (outerElement > innerElement) {
-          resultArray[outer] = innerElement;
-          resultArray[inner] = outerElement;
+          sortedArray[outer] = innerElement;
+          sortedArray[inner] = outerElement;
 
-          outerElement = resultArray[outer];
-          innerElement = resultArray[inner];
+          outerElement = sortedArray[outer];
+          innerElement = sortedArray[inner];
         }
       }
     }
 
-    return resultArray;
-  } // O(n^2)
+    return sortedArray;
+  } // O(n)
   // measurePerfomance(() => bubbleSort(generateNumbers(100)));
 
   function quickSort (array) {
@@ -38,59 +38,57 @@ function moduleSorting () {
 
     if (copiedArray.length <= 1) return copiedArray;
 
-    const smallArray = [];
-    const bigArray = [];
-    const pivotElement = copiedArray.shift();
-    const centerArray = [pivotElement];
+    const pElement = copiedArray.shift(); // pivot element
+    const boxA = []; // box for items smaller than pElement
+    const boxB = [pElement];
+    const boxC = []; // box for items bigger than pElement
 
     while (copiedArray.length) {
-      const currentElement = copiedArray.shift();
+      const cElement = copiedArray.shift(); // current element
 
-      if (pivotElement == currentElement) centerArray.push(currentElement);
-      else if (currentElement < pivotElement) smallArray.push(currentElement);
-      else bigArray.push(currentElement);
+      if (pElement === cElement) boxB.push(cElement);
+      else if (pElement > cElement) boxA.push(cElement);
+      else boxC.push(cElement);
     }
 
-    const sortedSmalls = quickSort(smallArray);
-    const sortedBigs = quickSort(bigArray);
+    const sortedBoxA = quickSort(boxA);
+    const sortedBoxB = quickSort(boxB);
+    const sortedBoxC = quickSort(boxC);
 
-    return sortedSmalls.concat(centerArray, sortedBigs);
-  } // O(n * log n) <= The Master Theorem
+    return sortedBoxA.concat(sortedBoxB, sortedBoxC);
+  } // The Master Theorem
   // measurePerfomance(() => quickSort(generateNumbers(100)));
 
   function mergeSort (array) {
-    if (array.length < 2) return array;
+    if (array.length === 1) return array;
 
-    if (array.length == 2) return array[0] > array[1] ? [array[1], array[0]] : array;
+    if (array.length === 2) return array[0] > array[1] ? [array[1], array[0]] : array;
 
-    const middle = Math.floor(array.length / 2);
-    const leftArray = array.slice(0, middle);
-    const rightArray = array.slice(middle);
+    const m = Math.floor(array.length / 2); // middle index
+    const lSortedArray = mergeSort(array.slice(0, m)); // left sorted array
+    const rSortedArray = mergeSort(array.slice(m)); // right sorted array
 
-    const leftSortedArray = mergeSort(leftArray);
-    const rightSortedArray = mergeSort(rightArray);
-
-    const mergedArray = [];
-    let leftArrayIndex = 0;
-    let rightArrayIndex = 0;
+    const mArray = []; // merged array
+    let lIndex = 0; // left index
+    let rIndex = 0; // right index
 
     while (
-        leftArrayIndex < leftSortedArray.length ||
-        rightArrayIndex < rightSortedArray.length
+        lIndex < lSortedArray.length ||
+        rIndex < rSortedArray.length
       ) {
       if (
-          leftArrayIndex >= leftSortedArray.length ||
-          leftSortedArray[leftArrayIndex] > rightSortedArray[rightArrayIndex]
+          lIndex >= lSortedArray.length ||
+          lSortedArray[lIndex] > rSortedArray[rIndex]
         ) {
-        mergedArray.push(rightSortedArray[rightArrayIndex]);
-        rightArrayIndex++;
+        mArray.push(rSortedArray[rIndex]);
+        rIndex++;
       } else {
-        mergedArray.push(leftSortedArray[leftArrayIndex]);
-        leftArrayIndex++;
+        mArray.push(lSortedArray[lIndex]);
+        lIndex++;
       }
     }
 
-    return mergedArray;
+    return mArray;
   }
   // measurePerfomance(() => mergeSort(generateNumbers(100)));
 }
