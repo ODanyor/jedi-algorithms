@@ -47,12 +47,12 @@ function moduleSet () {
 
     if (array.length === 1) return Array(array);
 
-    const partialPermutations = getPermutations(array.slice(1)); // [["3"]]
+    const partialPermutations = getPermutations(array.slice(1));
 
-    const firstOption = array[0]; // "2"
+    const firstOption = array[0];
 
     for (let i = 0; i < partialPermutations.length; i++) {
-      const partialPermutation = partialPermutations[i]; // ["3"]
+      const partialPermutation = partialPermutations[i];
 
       for (let j = 0; j <= partialPermutation.length; j++) {
         const permutationA = partialPermutation.slice(0, j);
