@@ -30,7 +30,9 @@ function moduleSorting () {
     }
 
     return sortedArray;
-  } // O(n)
+  }
+  // Time Complexity: O(n)
+  // Space Complexity: O(1)
   // measurePerfomance(() => bubbleSort(generateNumbers(100)));
 
   function quickSort (array) {
@@ -40,7 +42,7 @@ function moduleSorting () {
 
     const pElement = copiedArray.shift(); // pivot element
     const boxA = []; // box for items smaller than pElement
-    const boxB = [pElement];
+    const boxB = [pElement]; // box for items equal to pElement
     const boxC = []; // box for items bigger than pElement
 
     while (copiedArray.length) {
@@ -52,11 +54,12 @@ function moduleSorting () {
     }
 
     const sortedBoxA = quickSort(boxA);
-    const sortedBoxB = quickSort(boxB);
     const sortedBoxC = quickSort(boxC);
 
     return sortedBoxA.concat(sortedBoxB, sortedBoxC);
-  } // The Master Theorem
+  }
+  // Time Complexity: O(n * log n)
+  // Space Complexity: O(n)
   // measurePerfomance(() => quickSort(generateNumbers(100)));
 
   function mergeSort (array) {
@@ -90,6 +93,8 @@ function moduleSorting () {
 
     return mArray;
   }
+  // Time Complexity: O(n * log n)
+  // Space Complexity: O(n)
   // measurePerfomance(() => mergeSort(generateNumbers(100)));
 }
 

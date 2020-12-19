@@ -8,13 +8,26 @@ function moduleMath () {
   } // O(1)
   // measurePerfomance(() => isPowerOfTwo(64), 1);
 
-  function factorial (number) {
+  function factorialLoop (number) {
+    let result = 1;
+
+    for (let i = 2; i <= number; i++) result *= i;
+
+    return result;
+  }
+  // Time Complexity: O(n)
+  // Space Complexity: O(1)
+  // measurePerfomance(() => factorialLoop(3));
+
+  function factorialRecursion (number) { 
     if (number > 0) {
       if (number == 1) return number; // 1
-      return number * factorial(number - 1); // n
+      return number * factorialRecursion(number - 1); // n
     } else if (number == 0) return 1;
-  } // T = 1 + n = n => O(n)
-  // measurePerfomance(() => factorial(0), 0);
+  }
+  // Time Complexity: O(n)
+  // Space Complexity: O(n)
+  // measurePerfomance(() => factorialRecursion(0), 0);
 
   function fibonacciSequenceOf (number) {
     if (number == 0 || number == 1) return 1;

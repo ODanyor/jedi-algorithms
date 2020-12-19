@@ -1,5 +1,5 @@
 function main () {
-  console.log("<<<=== Practice Time ===>>>");
+  // console.log("<<<=== Practice Time ===>>>");
 
   const numbers = [19, 12, 5, 2, 0, -1, -5, -14];
 
@@ -83,7 +83,7 @@ function main () {
 
     return mArray;
   }
-  measurePerfomance(() => mergeSort(numbers));
+  // measurePerfomance(() => mergeSort(numbers));
 }
 
 window.addEventListener("load", main);

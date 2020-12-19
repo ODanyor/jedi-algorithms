@@ -6,14 +6,18 @@ function moduleSearch () {
   const numbers = [1, 4, -1, 5, 31, 324, 7, 2, 83, -53];
   function defaultSearch (element, array) {
     return array.find(item => item == element);
-  } // O(n)
+  }
+  // Time Complexity: O(n)
+  // Space Complexity: O(1)
   // measurePerfomance(() => defaultSearch(31, numbers));
 
   function linearSearch (element, array) {
     for (const index in array) {
       if (array[index] === element) return index;
     }
-  } // O(n)
+  }
+  // Time Complexity: O(n)
+  // Space Complexity: O(1)
   // measurePerfomance(() => linearSearch(5, numbers));
 
   const sortedNumbers = [-13, -2, 0, 1, 4, 6, 7, 10, 17];
@@ -29,9 +33,12 @@ function moduleSearch () {
       if (sortedArray[middleIndex] < element) startIndex = middleIndex + 1;
       else endIndex = middleIndex - 1;
     }
-  } // O(log n)
+  }
+  // Time Complexity: O(log n)
+  // Space Complexity: O(1)
   // measurePerfomance(() => sortedNumbers(-2, sortedNumbers), 0);
   function binarySearch2 (element, sortedArray, offset) {
+    // O(1)
     let startIndex = 0;
     let endIndex = sortedArray.length - 1;
 
@@ -44,8 +51,9 @@ function moduleSearch () {
       offset += middleIndex + 1;
     } else endIndex = middleIndex - 1;
 
+    // O(1)
     return binarySearch2(element, sortedArray.slice(startIndex, endIndex + 1), offset);
-  } // The Master Theorem (43)
+  } // O(n^logb a * log n) => O(1 * log n) = O(log n)
   // measurePerfomance(() => binarySearch2(-13, sortedNumbers, 0), 0);
 }
 
