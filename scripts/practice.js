@@ -1,89 +1,29 @@
 function main () {
-  // console.log("<<<=== Practice Time ===>>>");
+  console.log("<<<=== Practice Time ===>>>");
 
-  const numbers = [19, 12, 5, 2, 0, -1, -5, -14];
+  const items = ["2", "1", "2"];
+  function permutation(array) { // ["2", "1", "2"]
+    const permutations = [];
 
-  function bubbleSort (array) {
-    const sortedArray = array.slice();
+    if (array.length === 1) return Array(array);
 
-    for (let outer = 0; outer < sortedArray.length; outer++) {
-      let outerElement = sortedArray[outer];
+    const partialPermutations = permutation(array.slice(1));
+    const fisrtOption = Array(array[0]);
 
-      for (let inner = outer + 1; inner < sortedArray.length; inner++) {
-        let innerElement = sortedArray[inner];
+    for (let i = 0; i < partialPermutations.length; i++) {
+      const partialPermutation = partialPermutations[i];
 
-        if (outerElement > innerElement) {
-          sortedArray[outer] = innerElement;
-          sortedArray[inner] = outerElement;
+      for (let j = 0; j <= partialPermutations.length; j++) {
+        const permutationA = partialPermutation.slice(0, j);
+        const permutationB = partialPermutation.slice(j);
 
-          outerElement = sortedArray[outer];
-          innerElement = sortedArray[inner];
-        }
+        permutations.push(permutationA.concat(fisrtOption, permutationB));
       }
     }
 
-    return sortedArray;
-  } // O(n)
-  // measurePerfomance(() => bubbleSort(numbers));
-
-  function quickSort (array) {
-    const copiedArray = array.slice();
-
-    if (copiedArray.length <= 1) return copiedArray;
-
-    const pElement = copiedArray.shift(); // pivot element
-    const boxA = []; // box for items smaller than pElement
-    const boxB = [pElement];
-    const boxC = []; // box for items bigger than pElement
-
-    while (copiedArray.length) {
-      const cElement = copiedArray.shift(); // current element
-
-      if (pElement === cElement) boxB.push(cElement);
-      else if (pElement > cElement) boxA.push(cElement);
-      else boxC.push(cElement);
-    }
-
-    const sortedBoxA = quickSort(boxA);
-    const sortedBoxB = quickSort(boxB);
-    const sortedBoxC = quickSort(boxC);
-
-    return sortedBoxA.concat(sortedBoxB, sortedBoxC);
-  } // The Master Theorem
-  // measurePerfomance(() => quickSort(numbers));
-
-  function mergeSort (array) {
-    if (array.length === 1) return array;
-
-    if (array.length === 2) return array[0] > array[1] ? [array[1], array[0]] : array;
-
-    const m = Math.floor(array.length / 2); // middle index
-    const lSortedArray = mergeSort(array.slice(0, m)); // left sorted array
-    const rSortedArray = mergeSort(array.slice(m)); // right sorted array
-
-    const mArray = []; // merged array
-    let lIndex = 0; // left index
-    let rIndex = 0; // right index
-
-    while (
-        lIndex < lSortedArray.length ||
-        rIndex < rSortedArray.length
-      ) {
-      if (
-          lIndex >= lSortedArray.length ||
-          lSortedArray[lIndex] > rSortedArray[rIndex]
-        ) {
-        mArray.push(rSortedArray[rIndex]);
-        rIndex++;
-      } else {
-        mArray.push(lSortedArray[lIndex]);
-        lIndex++;
-      }
-    }
-
-    return mArray;
+    return permutations;
   }
-  // measurePerfomance(() => mergeSort(numbers));
+  measurePerfomance(() => permutation(items));
 }
 
 window.addEventListener("load", main);

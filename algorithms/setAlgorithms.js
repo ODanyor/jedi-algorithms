@@ -3,7 +3,7 @@
 // import generateSequenceNumbers from "./perfomance.js";
 
 function moduleSet () {
-  console.log("<<<=== Set algorithms ===>>>");
+  // console.log("<<<=== Set algorithms ===>>>");
 
   const colors = ["blue", "red"];
   const sizes = ["m", "l"];
@@ -64,7 +64,7 @@ function moduleSet () {
 
     return permutations;
   }
-  measurePerfomance(() => getPermutations(todo), 0);
+  // measurePerfomance(() => getPermutations(todo), 0);
 }
 
 window.addEventListener("load", moduleSet);
