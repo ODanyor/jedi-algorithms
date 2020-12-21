@@ -42,14 +42,15 @@ function moduleSet () {
 
   const todo = ["1","2","3"];
 
-  function getPermutations (array) {
+  // Version: without repetition
+  function getPermutations (options) {
     const permutations = [];
 
-    if (array.length === 1) return Array(array);
+    if (options.length === 1) return Array(options);
 
-    const partialPermutations = getPermutations(array.slice(1));
+    const partialPermutations = getPermutations(options.slice(1));
 
-    const firstOption = array[0];
+    const firstOption = options[0];
 
     for (let i = 0; i < partialPermutations.length; i++) {
       const partialPermutation = partialPermutations[i];
@@ -64,7 +65,27 @@ function moduleSet () {
 
     return permutations;
   }
-  // measurePerfomance(() => getPermutations(todo), 0);
+  // Time Complexity: O(n!)
+  // measurePerfomance(() => getPermutations(todo));
+
+  // Version: with repetition
+  function getPermutations2 (options, length) {
+    const permutations = [];
+
+    if (length === 1) return options.map(option => [option]);
+
+    const partialPermutations = getPermutations2(options, length - 1);
+
+    for (const option of options) {
+      for (const existingPermuation of partialPermutations) {
+        permutations.push([option].concat(existingPermuation));
+      }
+    }
+
+    return permutations;
+  }
+  // Time Complexity: O(n^r) => n = number options; r = length
+  // measurePerfomance(() => getPermutations2(todo, 3));
 }
 
 window.addEventListener("load", moduleSet);

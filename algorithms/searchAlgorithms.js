@@ -37,6 +37,7 @@ function moduleSearch () {
   // Time Complexity: O(log n)
   // Space Complexity: O(1)
   // measurePerfomance(() => sortedNumbers(-2, sortedNumbers), 0);
+  
   function binarySearch2 (element, sortedArray, offset) {
     // O(1)
     let startIndex = 0;

@@ -1,16 +1,16 @@
-function measurePerfomance(callback, times=1000) {
+function measurePerfomance(callback, count=1000) {
   let total = 0;
 
-  for (let i = 0; i < times; i++) {
-    const startTime = performance.now();
+  for (let i = 0; i < count; i++) {
+    const sTime = performance.now();
     callback();
-    const endTime = performance.now();
+    const eTime = performance.now();
 
-    total += endTime - startTime;
+    total += eTime - sTime;
   }
 
   console.log({
-    perfomance: total / times,
+    perfomance: total / count,
     result: callback(),
   });
 }
