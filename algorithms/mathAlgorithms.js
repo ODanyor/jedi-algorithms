@@ -1,7 +1,7 @@
-// import measurePerfomance from './perfomance.js';
+// included <measurePerfomance> from perfomance.js;
 
 function moduleMath () {
-  // console.log("<<<=== Math algorithms ===>>>");
+  console.log("<<<=== Math algorithms ===>>>");
 
   function isPowerOfTwo (number) {
     return !Boolean(number & number - 1);
@@ -44,4 +44,4 @@ function moduleMath () {
   // measurePerfomance(() => fibSequence_updated(15, {}));
 }
 
-window.addEventListener("load", moduleMath);
+export default moduleMath;

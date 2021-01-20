@@ -1,9 +1,7 @@
-// import measurePerfomance from "./perfomance.js";
-// import generateNumbers from "./perfomance.js";
-// import generateSequenceNumbers from "./perfomance.js";
+// included <measurePerfomance> from perfomance.js;
 
 function moduleSorting () {
-  // console.log("<<<=== Sorting algorithms ===>>>");
+  console.log("<<<=== Sorting algorithms ===>>>");
 
   function defaultSort (array) {
     return array.sort((a, b) => a - b);
@@ -98,4 +96,4 @@ function moduleSorting () {
   // measurePerfomance(() => mergeSort(generateNumbers(100)));
 }
 
-window.addEventListener("load", moduleSorting);
+export default moduleSorting;

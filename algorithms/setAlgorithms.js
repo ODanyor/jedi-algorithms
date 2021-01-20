@@ -1,9 +1,7 @@
-// import measurePerfomance from "./perfomance.js";
-// import generateNumbers from "./perfomance.js";
-// import generateSequenceNumbers from "./perfomance.js";
+// included <measurePerfomance> from perfomance.js;
 
 function moduleSet () {
-  // console.log("<<<=== Set algorithms ===>>>");
+  console.log("<<<=== Set algorithms ===>>>");
 
   const colors = ["blue", "red"];
   const sizes = ["m", "l"];
@@ -88,4 +86,4 @@ function moduleSet () {
   // measurePerfomance(() => getPermutations2(todo, 3));
 }
 
-window.addEventListener("load", moduleSet);
+export default moduleSet;

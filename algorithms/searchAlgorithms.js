@@ -1,7 +1,7 @@
-// import measurePerfomance from './perfomance.js';
+// included <measurePerfomance> from perfomance.js;
 
 function moduleSearch () {
-  // console.log("<<<=== Searching algorithms ===>>>");
+  console.log("<<<=== Searching algorithms ===>>>");
 
   const numbers = [1, 4, -1, 5, 31, 324, 7, 2, 83, -53];
   function defaultSearch (element, array) {
@@ -58,4 +58,4 @@ function moduleSearch () {
   // measurePerfomance(() => binarySearch2(-13, sortedNumbers, 0), 0);
 }
 
-window.addEventListener("load", moduleSearch);
+export default moduleSearch;
